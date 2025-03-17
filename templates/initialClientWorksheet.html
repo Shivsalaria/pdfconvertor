@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGS Security Solutions - Initial Client Worksheet</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .header h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .header p {
+            color: #666;
+            margin: 5px 0;
+        }
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .section-title {
+            background-color: #f5f5f5;
+            padding: 10px;
+            margin: -20px -20px 20px -20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .section-title h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .checkbox-group {
+            margin-bottom: 10px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .notes {
+            margin-top: 15px;
+        }
+        .notes label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .notes textarea {
+            width: 100%;
+            height: 100px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .faq-section {
+            margin-top: 20px;
+        }
+        .faq-section h4 {
+            color: #444;
+            margin-bottom: 10px;
+        }
+        .faq-section p {
+            margin-bottom: 15px;
+        }
+        .faq-section strong {
+            color: #333;
+        }
+        .subsection {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        .subsection h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .display-value {
+            padding: 8px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .checkbox-display {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .checkbox-display::before {
+            content: "✓";
+            margin-right: 8px;
+            color: #28a745;
+        }
+        .checkbox-display.unchecked::before {
+            content: "✗";
+            color: #dc3545;
+        }
+        .custom-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .custom-option::before {
+            content: "•";
+            margin-right: 8px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<script src="loadData.js"></script>
+<body>
+    <div class="container">
+        <!-- <div class="header">
+            <h1>EGS Security Solutions</h1>
+            <h2>Initial Client Worksheet</h2>
+            <p>CONFIDENTIAL - Engagement Task Log</p>
+            <p>EGS SECURITY SERVICES PENETRATION TESTING TELECONFERENCE WORKSHEET</p>
+        </div> -->
+
+        <!-- SECTION 1 - CLIENT INFORMATION -->
+        <div class="section">
+            <div class="section-title">
+                <h3>SECTION 1 - CLIENT INFORMATION</h3>
+            </div>
+            <div class="grid">
+                <div class="form-group">
+                    <label>Company:</label>
+                    <div class="display-value" id="company-display"></div>
+                    
+                </div>
+                <div class="form-group">
+                    <label>Street Address:</label>
+                    <div class="display-value" id="streetAddress-display"></div>
+                </div>
+                <div class="form-group">
+                    <label>City, State, ZIP:</label>
+                    <div class="display-value" id="cityStateZIP-display"></div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div>
+                    <h4>Primary Contact</h4>
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <div class="display-value" id="primaryContactName-display"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone:</label>
+                        <div class="display-value" id="primaryContactPhone-display"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <div class="display-value" id="primaryContactEmail-display"></div>
+                    </div>
+                </div>
+                <div>
+                    <h4>Alternate Contact</h4>
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <div class="display-value" id="alternateContactName-display"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone:</label>
+                        <div class="display-value" id="alternateContactPhone-display"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <div class="display-value" id="alternateContactEmail-display"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2 - TELECONFERENCE INFORMATION -->
+        <div class="section">
+            <div class="section-title">
+                <h3>SECTION 2 - TELECONFERENCE INFORMATION</h3>
+            </div>
+            <div class="grid">
+                <div class="form-group">
+                    <label>Date & Time:</label>
+                    <div class="display-value" id="dateTime-display"></div>
+                </div>
+                <div class="form-group">
+                    <label>Point of Contact:</label>
+                    <div class="display-value" id="pointOfContact-display"></div>
+                </div>
+                <div class="form-group">
+                    <label>Teleconference Number:</label>
+                    <div class="display-value" id="teleconferenceNumber-display"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3 - CLIENT REQUIREMENTS -->
+        <div class="section">
+            <div class="section-title">
+                <h3>SECTION 3 - CLIENT REQUIREMENTS</h3>
+            </div>
+
+            <!-- FRAP Section -->
+            <div class="subsection">
+                <h4>FACILITATED RISK ANALYSIS PROCESS (FRAP)</h4>
+                <div id="frap-checkboxes"></div>
+                <div class="notes">
+                    <label>FRAP Notes:</label>
+                    <div class="display-value" id="frapNotes-display"></div>
+                </div>
+            </div>
+
+            <!-- ISSA Section -->
+            <div class="subsection">
+                <h4>INFORMATION SYSTEMS SECURITY ASSESSMENT</h4>
+                <div id="issa-checkboxes"></div>
+            </div>
+
+            <!-- External Vulnerability Assessment -->
+            <div class="subsection">
+                <h4>EXTERNAL VULNERABILITY ASSESSMENT</h4>
+                <div id="externalVulnerability-checkboxes"></div>
+                <div class="grid">
+                    <div class="form-group">
+                        <label>Number External IPs to be tested:</label>
+                        <div class="display-value" id="externalIPsToTest-display"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Total number external IPs in organization:</label>
+                        <div class="display-value" id="totalExternalIPs-display"></div>
+                    </div>
+                </div>
+                <div class="notes">
+                    <label>External Vulnerability Assessment Notes:</label>
+                    <div class="display-value" id="evaNotes-display"></div>
+                </div>
+            </div>
+
+            <!-- Internal Vulnerability Assessment -->
+            <div class="subsection">
+                <h4>INTERNAL VULNERABILITY ASSESSMENT</h4>
+                <div id="internalVulnerability-checkboxes"></div>
+                <div class="grid">
+                    <div class="form-group">
+                        <label>Number Internal IPs to be tested:</label>
+                        <div class="display-value" id="internalIPsToTest-display"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Total number internal IPs in organization:</label>
+                        <div class="display-value" id="totalInternalIPs-display"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GAP Analysis Section -->
+            <div class="subsection">
+                <h4>GAP ANALYSIS</h4>
+                <div id="gapAnalysis-checkboxes"></div>
+                <div class="notes">
+                    <label>GAP Analysis Notes:</label>
+                    <div class="display-value" id="gapAnalysisNotes-display"></div>
+                </div>
+            </div>
+
+            <!-- Other Requirements -->
+            <div class="subsection">
+                <h4>OTHER REQUIREMENTS</h4>
+                <div id="otherRequirements-list"></div>
+                <div class="notes">
+                    <label>Other Requirements Notes:</label>
+                    <div class="display-value" id="otherRequirementsNotes-display"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4 - TELECONFERENCE NOTES -->
+        <div class="section">
+            <div class="section-title">
+                <h3>SECTION 4 - TELECONFERENCE NOTES</h3>
+            </div>
+            <div class="form-group">
+                <div class="display-value" id="teleconferenceNotes-display"></div>
+            </div>
+        </div>
+
+        <!-- SECTION 5 - FREQUENTLY ASKED QUESTIONS -->
+        <div class="section">
+            <div class="section-title">
+                <h3>SECTION 5 - FREQUENTLY ASKED QUESTIONS</h3>
+            </div>
+            <div class="faq-section">
+                <h4>FRAP (Facilitated Risk Assessment Process)</h4>
+                <p><strong>Initial FRAP:</strong> Sessions with key personnel from EACH department. Participants identify critical information assets, assess threats and vulnerabilities to identified assets, analyze the impact on the organization of identified threats and identify mitigating controls. Risks are identified and prioritized using the CIA Triad of Confidentiality, Integrity and Availability. Mitigating controls are then assigned to each risk. Deliverables include a Risk Action Plan template that the client organization will use to assign timelines and responsible persons to each identified risk and associated controls.</p>
+                <p><strong>Follow Up of Risk Action Plan:</strong> Review of existing RAP in light of changes in the client organization's security environment.</p>
+                <p><strong>Detailed analysis of Risk Action Plan:</strong> Review of existing RAP, breaking general risks into specific areas, e.g., power outage becomes power outage > 30 min, power outage > 1 day, power outage > 1 week.</p>
+            </div>
+
+            <div class="faq-section">
+                <h4>ISSA (Information Systems Security Assessment)</h4>
+                <p><strong>Antivirus Administration & Configuration:</strong> Includes review of existing policies and procedures with recommendations for minimum included items; review of installed AV software (version, patch & hotfix level, capabilities, update frequency, distribution scheme); host/appliance OS security, patch & hotfix level; AV client configuration and AV training for administrators and end users. Includes recommendations for industry "best practices".</p>
+                <p><strong>BCP/DRP:</strong> Documentation, content and sufficiency of policies and procedures relating to the core application system; includes logical controls, physical access controls, reports and error reporting, change management, third party remote access control and recommendations for industry "best practices."</p>
+                <p><strong>Core Application Systems Security:</strong> Includes review of existing policies and procedures related to the control of the client organization's core system host and application. Includes recommendations for industry "best practices".</p>
+                <p><strong>Data Backup & Recovery:</strong> Includes review of existing policies and procedures with recommendations for minimum included items; review of installed backup software (version, patch & hotfix level, capabilities); host/appliance OS security, patch & hotfix level; backup software change control processes; types and frequency of data backups; media labeling, accountability, inventory and reconciliation procedures; on and off-site storage of media and data recovery testing procedures. Includes recommendations for industry "best practices".</p>
+                <p><strong>Firewall Administration & Configuration:</strong> If a Perimeter and Core Infrastructure Assessment is not part of the engagement, FAC includes review of existing policies and procedures related to the administration of the credit union's firewall(s); examination of firewall configuration files and access control lists. Includes recommendations for industry "best practices". If a Perimeter and Core Infrastructure Assessment is part of the engagement, these items as well as additional items are reported in the appropriate section of the PCIA.</p>
+                <p><strong>Follow-up Status of Recommendations:</strong> Includes examination of previous Information Systems reviews conducted by the client organization's regulators and external auditors; examination of follow up actions on the findings of those reviews.</p>
+                <p><strong>Insurance Coverage:</strong> Includes review of existing insurance policies and coverage levels; recommendations of coverage levels based on current the client organization's environment.</p>
+                <p><strong>Network Monitoring & Intrusion Detection:</strong> If a Perimeter and Core Infrastructure Assessment is not part of the engagement, NMP includes review of existing policies and procedures related to intrusion detection and review of the configuration files of intrusion detection systems and host devices. Includes recommendations for industry "best practices." If a Perimeter and Core Infrastructure Assessment is part of the engagement, these items as well as additional items are reported in the appropriate section of the PCIA.</p>
+                <p><strong>Network Topology:</strong> Includes review of existing policies and procedures related to network topology configuration and documentation; verification that network documentation is current and reflects the actual network topology.</p>
+                <p><strong>Patch Management Process:</strong> Includes review of existing policies and procedures with recommendations for minimum included items; review of installed PM software (version, patch & hotfix level, capabilities, update frequency, distribution scheme); host/appliance OS security, patch & hotfix level; PM change control and back out procedures.</p>
+                <p><strong>Physical Security:</strong> If Social Engineering as not part of the engagement, PS includes review of existing policies and procedures related to the physical security of the client organization and its assets, walk through during both business and non-business hours and sanitation reconnaissance. Includes recommendations for industry "best practices." If Social Engineering is part of the engagement, these items as well as additional items are reported in the appropriate section of the SEA.</p>
+                <p><strong>Policy, Procedure and Documentation:</strong> Includes review of existing policies and procedures related to Information Security.</p>
+                <p><strong>Router Administration & Configuration:</strong> If a Perimeter and Core Infrastructure Assessment is not part of the engagement, RAC includes review of existing policies and procedures related to the administration of the client organization's router(s); examination of router configuration files and access control lists. Includes recommendations for industry "best practices." If a Perimeter and Core Infrastructure Assessment is part of the engagement, these items as well as additional items are reported in the appropriate section of the PCIA.</p>
+                <p><strong>Server Administration & Configuration:</strong> If a Perimeter and Core Infrastructure Assessment is not part of the engagement, SAC includes review of existing policies and procedures related to the administration of the client organization's server(s); examination of server configuration files and access control lists. Includes recommendations for industry "best practices." If a Perimeter and Core Infrastructure Assessment is part of the engagement, these items as well as additional items are reported in the appropriate section of the PCIA.</p>
+                <p><strong>Switch Administration & Configuration:</strong> If a Perimeter and Core Infrastructure Assessment is not part of the engagement, SWAC includes review of existing policies and procedures related to the administration of the client organization's switch(es); examination of switch configuration files and access control lists. Includes recommendations for industry "best practices." If a Perimeter and Core Infrastructure Assessment is part of the engagement, these items as well as additional items are reported in the appropriate section of the PCIA.</p>
+                <p><strong>Workstation Administration & Configuration:</strong> If a Perimeter and Core Infrastructure Assessment is not part of the engagement, DAC includes review of existing policies and procedures related to the administration of the client organization's desktop computers and review of the security configuration of desktop operating systems and host devices. Includes recommendations for industry "best practices." If a Perimeter and Core Infrastructure Assessment is part of the engagement, these items as well as additional items are reported in the appropriate section of the PCIA.</p>
+            </div>
+
+            <div class="faq-section">
+                <h4>Assessments and Testing</h4>
+                <p><strong>Internet Foot Print Information Analysis:</strong> Uses the Internet to search for information that could assist an attacker in gaining access to the client organization's network. Includes examination of the client organization's web site HTML code (as seen by an attacker) and search results for contact names, email addresses, product endorsements, personal information, etc. that could be used by an attacker.</p>
+                <p><strong>External Vulnerability Assessment:</strong> Examines an organization's security profile from the perspective of an outsider or someone who does not have access to systems and networks behind the organization's external security perimeter.</p>
+                <p><strong>Network Vulnerability Assessment:</strong> Scan, investigate, analyze, and report on the level of risk associated with any security vulnerabilities discovered on the public, internet-facing devices and to provide your organization with appropriate mitigation strategies to address those discovered vulnerabilities.</p>
+                <p><strong>External Penetration Testing:</strong> Attempts to breach the target as an unauthorized user with varying levels of access. An External Penetration Test mimics the actions of an actual attacker exploiting weaknesses in the network security without the usual dangers. This test examines external IT systems for any weakness that could be used by an external attacker to disrupt the confidentiality, availability or integrity of the network, thereby allowing the organisation to address each weakness.</p>
+                <p><strong>Internal Penetration Testing:</strong> Mimics the actions of an actual attacker exploiting weaknesses in network security. This test examines internal IT systems for any weakness that could be used to disrupt the confidentiality, availability, or integrity of the network, thereby allowing the organization to address each weakness.</p>
+                <p><strong>Social Engineering Security Assessment:</strong> Consists of impersonating a trusted individual in an attempt to gain information and/or access to information or the client network infrastructure.</p>
+                <p><strong>Gramm-Leach-Bliley Gap Analysis:</strong> Performed in conjunction with the Internal Vulnerability Assessments and Analysis order to evaluate our client's compliance in respect to "safeguarding member information" per the Gramm-Leach-Bliley Act.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to update display values from form data
+        function updateDisplayValues(formData) {
+            // Update client information
+            document.getElementById('company-display').textContent = formData.clientInfo.company || '';
+            document.getElementById('streetAddress-display').textContent = formData.clientInfo.streetAddress || '';
+            document.getElementById('cityStateZIP-display').textContent = formData.clientInfo.cityStateZIP || '';
+            document.getElementById('primaryContactName-display').textContent = formData.clientInfo.primaryContactName || '';
+            document.getElementById('primaryContactPhone-display').textContent = formData.clientInfo.primaryContactPhone || '';
+            document.getElementById('primaryContactEmail-display').textContent = formData.clientInfo.primaryContactEmail || '';
+            document.getElementById('alternateContactName-display').textContent = formData.clientInfo.alternateContactName || '';
+            document.getElementById('alternateContactPhone-display').textContent = formData.clientInfo.alternateContactPhone || '';
+            document.getElementById('alternateContactEmail-display').textContent = formData.clientInfo.alternateContactEmail || '';
+
+            // Update teleconference information
+            document.getElementById('dateTime-display').textContent = formData.teleconferenceInfo.dateTime || '';
+            document.getElementById('pointOfContact-display').textContent = formData.teleconferenceInfo.pointOfContact || '';
+            document.getElementById('teleconferenceNumber-display').textContent = formData.teleconferenceInfo.teleconferenceNumber || '';
+
+            // Update FRAP section
+            const frapCheckboxes = document.getElementById('frap-checkboxes');
+            frapCheckboxes.innerHTML = '';
+            Object.entries(formData.clientRequirements.frap).forEach(([key, value]) => {
+                if (typeof value === 'boolean') {
+                    const div = document.createElement('div');
+                    div.className = `checkbox-display ${value ? '' : 'unchecked'}`;
+                    div.textContent = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                    frapCheckboxes.appendChild(div);
+                }
+            });
+            document.getElementById('frapNotes-display').textContent = formData.clientRequirements.frap.notes || '';
+
+            // Update ISSA section
+            const issaCheckboxes = document.getElementById('issa-checkboxes');
+            issaCheckboxes.innerHTML = '';
+            Object.entries(formData.clientRequirements.issa).forEach(([key, value]) => {
+                if (typeof value === 'boolean') {
+                    const div = document.createElement('div');
+                    div.className = `checkbox-display ${value ? '' : 'unchecked'}`;
+                    div.textContent = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                    issaCheckboxes.appendChild(div);
+                }
+            });
+
+            // Update External Vulnerability Assessment
+            const externalVulnCheckboxes = document.getElementById('externalVulnerability-checkboxes');
+            externalVulnCheckboxes.innerHTML = '';
+            Object.entries(formData.clientRequirements.externalVulnerabilityAssessment).forEach(([key, value]) => {
+                if (typeof value === 'boolean') {
+                    const div = document.createElement('div');
+                    div.className = `checkbox-display ${value ? '' : 'unchecked'}`;
+                    div.textContent = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                    externalVulnCheckboxes.appendChild(div);
+                }
+            });
+            document.getElementById('externalIPsToTest-display').textContent = formData.clientRequirements.externalVulnerabilityAssessment.externalIPsToTest || '';
+            document.getElementById('totalExternalIPs-display').textContent = formData.clientRequirements.externalVulnerabilityAssessment.totalExternalIPs || '';
+            document.getElementById('evaNotes-display').textContent = formData.clientRequirements.externalVulnerabilityAssessment.notes || '';
+
+            // Update Internal Vulnerability Assessment
+            const internalVulnCheckboxes = document.getElementById('internalVulnerability-checkboxes');
+            internalVulnCheckboxes.innerHTML = '';
+            Object.entries(formData.clientRequirements.internalVulnerabilityAssessment).forEach(([key, value]) => {
+                if (typeof value === 'boolean') {
+                    const div = document.createElement('div');
+                    div.className = `checkbox-display ${value ? '' : 'unchecked'}`;
+                    div.textContent = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                    internalVulnCheckboxes.appendChild(div);
+                }
+            });
+            document.getElementById('internalIPsToTest-display').textContent = formData.clientRequirements.internalVulnerabilityAssessment.internalIPsToTest || '';
+            document.getElementById('totalInternalIPs-display').textContent = formData.clientRequirements.internalVulnerabilityAssessment.totalInternalIPs || '';
+
+            // Update GAP Analysis
+            const gapAnalysisCheckboxes = document.getElementById('gapAnalysis-checkboxes');
+            gapAnalysisCheckboxes.innerHTML = '';
+            Object.entries(formData.clientRequirements.gapAnalysis).forEach(([key, value]) => {
+                if (typeof value === 'boolean') {
+                    const div = document.createElement('div');
+                    div.className = `checkbox-display ${value ? '' : 'unchecked'}`;
+                    div.textContent = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                    gapAnalysisCheckboxes.appendChild(div);
+                }
+            });
+            document.getElementById('gapAnalysisNotes-display').textContent = formData.clientRequirements.gapAnalysis.notes || '';
+
+            // Update Other Requirements
+            const otherRequirementsList = document.getElementById('otherRequirements-list');
+            otherRequirementsList.innerHTML = '';
+            formData.clientRequirements.otherRequirements.forEach(req => {
+                const div = document.createElement('div');
+                div.className = 'custom-option';
+                div.textContent = req;
+                otherRequirementsList.appendChild(div);
+            });
+            document.getElementById('otherRequirementsNotes-display').textContent = formData.clientRequirements.otherRequirementsNotes || '';
+
+            // Update Teleconference Notes
+            document.getElementById('teleconferenceNotes-display').textContent = formData.teleconferenceNotes || '';
+        }
+
+        // Function to receive form data from the React component
+        window.updateFormData = function(formData) {
+            updateDisplayValues(formData);
+        };
+    </script>
+</body>
+</html> 
